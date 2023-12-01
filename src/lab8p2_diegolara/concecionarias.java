@@ -36,4 +36,13 @@ public class concecionarias {
     public void setLocación(String locación) {
         this.locación = locación;
     }
+
+    public ArrayList<Carro> getCarro() {
+        return carro;
+    }
+
+    public void setCarro(ArrayList<Carro> carro) {
+        this.carro = carro;
+    }
+    
 }

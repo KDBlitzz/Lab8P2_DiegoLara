@@ -20,7 +20,7 @@ public class Login extends Thread {
     private ArrayList<jugador> lista = new ArrayList();
     private JDialog cargar = new JDialog();
     private JDialog crud = new JDialog();
-    
+
     private boolean flag = true;
     private int cont = 0;
 
@@ -61,6 +61,7 @@ public class Login extends Thread {
 
     @Override
     public void run() {
+        prog.setValue(0);
         while (flag) {
             try {
                 Thread.sleep(1000);
@@ -73,10 +74,12 @@ public class Login extends Thread {
                 cargar.setVisible(false);
                 crud.pack();
                 crud.setVisible(true);
+                return;
             }
 
             cont++;
         }
+        
 
     }
 }

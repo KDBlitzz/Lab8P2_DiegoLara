@@ -604,15 +604,74 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="955" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel32" min="-2" pref="82" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tf_loc" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel31" min="-2" pref="82" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="tf_nombrecon" min="-2" pref="210" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jb_conce" min="-2" pref="122" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="524" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="583" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tf_nombrecon" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tf_loc" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="jb_conce" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="379" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel31">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Dialog" size="18" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Nombre:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tf_nombrecon">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel32">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Dialog" size="18" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Locacion:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tf_loc">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jb_conce">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Agregar"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel13">
                   <Constraints>

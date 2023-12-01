@@ -27,6 +27,8 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        tf_admin.setText("admin");
+        pf_pass.setText("admin");
     }
 
     /**
@@ -81,6 +83,11 @@ public class Main extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         tf_tiempo = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        tf_nombrecon = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        tf_loc = new javax.swing.JTextField();
+        jb_conce = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jb_salirA = new javax.swing.JButton();
@@ -450,15 +457,47 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar Carro", jPanel6);
 
+        jLabel31.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel31.setText("Nombre:");
+
+        jLabel32.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel32.setText("Locacion:");
+
+        jb_conce.setText("Agregar");
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 955, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_loc))
+                        .addGroup(jPanel12Layout.createSequentialGroup()
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_nombrecon, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jb_conce, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(524, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(tf_nombrecon, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(tf_loc, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addComponent(jb_conce)
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Agregar Concesionaria", jPanel12);
@@ -1235,7 +1274,7 @@ public class Main extends javax.swing.JFrame {
         carg.setCargar(Cargar);
         carg.setCrud(CrudJugador);
         carg.start();
-
+        
     }//GEN-LAST:event_jb_confirmuMouseClicked
 
     private void jb_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_regresarMouseClicked
@@ -1305,6 +1344,8 @@ public class Main extends javax.swing.JFrame {
             data[3] = carros.get(jt_compra.getSelectedRow()).getFecha();
             data[4] = carros.get(jt_compra.getSelectedRow()).getTipo();
             model.addRow(data);
+            Carrosporjugador.setModel(model);
+            JOptionPane.showMessageDialog(CrudJugador, "Carro Compardo exitosamente");
         }
     }//GEN-LAST:event_jb_comprarcMouseClicked
 
@@ -1388,6 +1429,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1417,6 +1460,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jb_addcar;
     private javax.swing.JButton jb_color;
     private javax.swing.JButton jb_comprarc;
+    private javax.swing.JButton jb_conce;
     private javax.swing.JButton jb_confirmar;
     private javax.swing.JButton jb_confirmu;
     private javax.swing.JButton jb_crear;
@@ -1438,11 +1482,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_admin;
     private javax.swing.JTextField tf_correo;
     private javax.swing.JTextField tf_horsep;
+    private javax.swing.JTextField tf_loc;
     private javax.swing.JTextField tf_modcorreo;
     private javax.swing.JTextField tf_modname;
     private javax.swing.JTextField tf_modpais;
     private javax.swing.JTextField tf_moduser;
     private javax.swing.JTextField tf_name;
+    private javax.swing.JTextField tf_nombrecon;
     private javax.swing.JTextField tf_pais;
     private javax.swing.JTextField tf_precio;
     private javax.swing.JTextField tf_tiempo;
