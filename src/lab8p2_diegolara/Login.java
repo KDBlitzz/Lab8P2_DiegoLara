@@ -63,7 +63,7 @@ public class Login extends Thread {
     public void run() {
         while (flag) {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }

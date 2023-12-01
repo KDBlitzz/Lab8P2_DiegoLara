@@ -67,13 +67,15 @@ public class Carro {
         this.tiempo = tiempo;
     }
 
-    public String isTipo() {
+    public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    
 
     public String getMarca() {
         return marca;

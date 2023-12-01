@@ -80,6 +80,8 @@ public class Main extends javax.swing.JFrame {
         tf_vp = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         tf_tiempo = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jb_salirA = new javax.swing.JButton();
         LoginU = new javax.swing.JDialog();
@@ -121,6 +123,9 @@ public class Main extends javax.swing.JFrame {
         jl_carrosdejugador = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         jt_compra = new javax.swing.JTable();
+        jLabel30 = new javax.swing.JLabel();
+        money = new javax.swing.JLabel();
+        jb_comprarc = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jb_salirmod = new javax.swing.JButton();
         Cargar = new javax.swing.JDialog();
@@ -445,6 +450,32 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar Carro", jPanel6);
 
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 955, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 583, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Agregar Concesionaria", jPanel12);
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 955, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 583, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Agregar Circuitos", jPanel13);
+
         jb_salirA.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jb_salirA.setText("Salir");
         jb_salirA.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -695,10 +726,7 @@ public class Main extends javax.swing.JFrame {
 
         Carrosporjugador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Marca", "Modelo", "Color", "Año", "Tipo"
@@ -739,10 +767,7 @@ public class Main extends javax.swing.JFrame {
 
         jt_compra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Marca", "Modelo", "Año", "Precio"
@@ -750,16 +775,36 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(jt_compra);
 
+        jLabel30.setText("Cash:");
+
+        jb_comprarc.setText("Comprar Carro");
+        jb_comprarc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_comprarcMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jb_comprarc, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(money, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -770,8 +815,14 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_comprarc)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(money, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Compra y Venta", jPanel10);
@@ -1139,16 +1190,27 @@ public class Main extends javax.swing.JFrame {
 
         if (cb_tipo.getSelectedItem().toString().equals("Reconstruido")) {
             carros.add(new Carro("Reconstruido", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText())));
+            DefaultTableModel model = (DefaultTableModel) jt_compra.getModel();
+            Object[] data = new Object[4];
+            data[0] = cb_marca.getSelectedItem();
+            data[1] = cb_modelo.getSelectedItem();
+            data[2] = dc_fechacarro.getDate();
+            data[3] = tf_precio.getText();
+            
+            model.addRow(data);
+
+            jt_compra.setModel(model);
             JOptionPane.showMessageDialog(Admin, "Carro añadido");
+
         } else {
             carros.add(new Carro("Agencia", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText())));
             DefaultTableModel model = (DefaultTableModel) jt_compra.getModel();
-            Object[] data = new Object[5];
+            Object[] data = new Object[4];
             data[0] = cb_marca.getSelectedItem();
             data[1] = cb_modelo.getSelectedItem();
-            data[2] = carro;
-            data[3] = dc_fechacarro;
-            data[4] = "Agencia";
+            data[2] = dc_fechacarro.getDate();
+            data[3] = tf_precio.getText();
+            
             model.addRow(data);
 
             jt_compra.setModel(model);
@@ -1165,6 +1227,8 @@ public class Main extends javax.swing.JFrame {
         LoginU.setVisible(false);
         Cargar.pack();
         Cargar.setVisible(true);
+        String mon = Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash());
+        money.setText(mon);
         pb_cargar.setMaximum(jugadores.size());
         carg.setLista(jugadores);
         carg.setProg(pb_cargar);
@@ -1227,6 +1291,22 @@ public class Main extends javax.swing.JFrame {
         CrudJugador.setVisible(false);
         this.setVisible(true);
     }//GEN-LAST:event_jb_salirmodMouseClicked
+
+    private void jb_comprarcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_comprarcMouseClicked
+        if (jugadores.get(cb_user.getSelectedIndex()).getCash() < carros.get(jt_compra.getSelectedRow()).getPrecio()) {
+            JOptionPane.showMessageDialog(CrudJugador, "No tiene suficiente pisto");
+        } else {
+            jugadores.get(cb_user.getSelectedIndex()).setCash(jugadores.get(cb_user.getSelectedIndex()).getCash() - carros.get(jt_compra.getSelectedRow()).getPrecio());
+            DefaultTableModel model = (DefaultTableModel) Carrosporjugador.getModel();
+            Object[] data = new Object[5];
+            data[0] = carros.get(jt_compra.getSelectedRow()).getMarca();
+            data[1] = carros.get(jt_compra.getSelectedRow()).getModelo();
+            data[2] = carros.get(jt_compra.getSelectedRow()).getColor();
+            data[3] = carros.get(jt_compra.getSelectedRow()).getFecha();
+            data[4] = carros.get(jt_compra.getSelectedRow()).getTipo();
+            model.addRow(data);
+        }
+    }//GEN-LAST:event_jb_comprarcMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1307,6 +1387,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1317,6 +1398,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1333,6 +1416,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JButton jb_addcar;
     private javax.swing.JButton jb_color;
+    private javax.swing.JButton jb_comprarc;
     private javax.swing.JButton jb_confirmar;
     private javax.swing.JButton jb_confirmu;
     private javax.swing.JButton jb_crear;
@@ -1345,6 +1429,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jb_userlogin;
     private javax.swing.JList<String> jl_carrosdejugador;
     private javax.swing.JTable jt_compra;
+    private javax.swing.JLabel money;
     private javax.swing.JProgressBar pb_cargar;
     private javax.swing.JPasswordField pf_cpass;
     private javax.swing.JPasswordField pf_modpass;
