@@ -464,6 +464,11 @@ public class Main extends javax.swing.JFrame {
         jLabel32.setText("Locacion:");
 
         jb_conce.setText("Agregar");
+        jb_conce.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_conceMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -1235,7 +1240,7 @@ public class Main extends javax.swing.JFrame {
             data[1] = cb_modelo.getSelectedItem();
             data[2] = dc_fechacarro.getDate();
             data[3] = tf_precio.getText();
-            
+
             model.addRow(data);
 
             jt_compra.setModel(model);
@@ -1249,7 +1254,7 @@ public class Main extends javax.swing.JFrame {
             data[1] = cb_modelo.getSelectedItem();
             data[2] = dc_fechacarro.getDate();
             data[3] = tf_precio.getText();
-            
+
             model.addRow(data);
 
             jt_compra.setModel(model);
@@ -1274,7 +1279,7 @@ public class Main extends javax.swing.JFrame {
         carg.setCargar(Cargar);
         carg.setCrud(CrudJugador);
         carg.start();
-        
+
     }//GEN-LAST:event_jb_confirmuMouseClicked
 
     private void jb_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_regresarMouseClicked
@@ -1336,6 +1341,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(CrudJugador, "No tiene suficiente pisto");
         } else {
             jugadores.get(cb_user.getSelectedIndex()).setCash(jugadores.get(cb_user.getSelectedIndex()).getCash() - carros.get(jt_compra.getSelectedRow()).getPrecio());
+            money.setText( Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash()));
             DefaultTableModel model = (DefaultTableModel) Carrosporjugador.getModel();
             Object[] data = new Object[5];
             data[0] = carros.get(jt_compra.getSelectedRow()).getMarca();
@@ -1348,6 +1354,10 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(CrudJugador, "Carro Compardo exitosamente");
         }
     }//GEN-LAST:event_jb_comprarcMouseClicked
+
+    private void jb_conceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_conceMouseClicked
+        conc.add(new concecionarias(tf_nombrecon.getText(), tf_loc.getText()));
+    }//GEN-LAST:event_jb_conceMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1385,6 +1395,8 @@ public class Main extends javax.swing.JFrame {
     }
     ArrayList<jugador> jugadores = new ArrayList();
     ArrayList<Carro> carros = new ArrayList();
+    ArrayList<concecionarias> conc = new ArrayList();
+    ArrayList<Circuitos> circ = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Admin;
     private javax.swing.JDialog Cargar;

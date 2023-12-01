@@ -13,12 +13,12 @@ import java.util.ArrayList;
 public class concecionarias {
 
     private String nombre;
-    private String locación;
+    private String loc;
     private ArrayList<Carro> carro = new ArrayList();
 
     public concecionarias(String nombre, String locación) {
         this.nombre = nombre;
-        this.locación = locación;
+        this.loc = locación;
     }
 
     public String getNombre() {
@@ -30,11 +30,11 @@ public class concecionarias {
     }
 
     public String getLocación() {
-        return locación;
+        return loc;
     }
 
     public void setLocación(String locación) {
-        this.locación = locación;
+        this.loc = locación;
     }
 
     public ArrayList<Carro> getCarro() {
@@ -43,6 +43,11 @@ public class concecionarias {
 
     public void setCarro(ArrayList<Carro> carro) {
         this.carro = carro;
+    }
+
+    @Override
+    public String toString() {
+        return  "\nNombre: " + nombre;
     }
     
 }

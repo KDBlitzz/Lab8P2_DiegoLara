@@ -55,6 +55,11 @@ public class Circuitos {
     public void setLoc(String loc) {
         this.loc = loc;
     }
+
+    @Override
+    public String toString() {
+        return "Tipo: " + tipo;
+    }
     
     
 }
