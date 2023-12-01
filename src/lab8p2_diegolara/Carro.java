@@ -19,12 +19,13 @@ public class Carro {
     private String modelo;
     private Color color;
     private double precio;
-    ArrayList<String> mejoras = new ArrayList();
+    private ArrayList<String> mejoras = new ArrayList();
     private String pais;
     private Date fecha = new Date();
     private int Horsep;
     private int velodidadp;
     private int tiempo;
+    private ArrayList<Parte> partes = new ArrayList();
 
     public Carro() {
     }
@@ -84,6 +85,14 @@ public class Carro {
 
     public String getModelo() {
         return modelo;
+    }
+
+    public ArrayList<Parte> getPartes() {
+        return partes;
+    }
+
+    public void setPartes(ArrayList<Parte> partes) {
+        this.partes = partes;
     }
 
     public void setModelo(String modelo) {

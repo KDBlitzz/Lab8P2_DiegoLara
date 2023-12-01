@@ -12,7 +12,8 @@ import java.util.Date;
  * @author diego
  */
 public class jugador {
-        private String nombre;
+
+    private String nombre;
     private String correo;
     private String pais;
     private double cash = 150000;
@@ -20,6 +21,7 @@ public class jugador {
     Date fecha = new Date();
     private String pass;
     private String user;
+
     public jugador() {
     }
 

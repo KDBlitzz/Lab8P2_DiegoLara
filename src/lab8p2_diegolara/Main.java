@@ -18,7 +18,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Main extends javax.swing.JFrame {
 // drag puede ser 800 o 400 metros
+
     Color carro;
+    private Login carg = new Login();
+
     /**
      * Creates new form Main
      */
@@ -120,6 +123,10 @@ public class Main extends javax.swing.JFrame {
         jt_compra = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jb_salirmod = new javax.swing.JButton();
+        Cargar = new javax.swing.JDialog();
+        jPanel11 = new javax.swing.JPanel();
+        pb_cargar = new javax.swing.JProgressBar();
+        jLabel29 = new javax.swing.JLabel();
         LoginA = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jb_confirmar = new javax.swing.JButton();
@@ -519,6 +526,9 @@ public class Main extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jb_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -534,10 +544,7 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(cb_user, 0, 230, Short.MAX_VALUE)
                                     .addComponent(pf_userpass)
                                     .addComponent(jb_confirmu))))
-                        .addGap(0, 290, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jb_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 290, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -732,13 +739,13 @@ public class Main extends javax.swing.JFrame {
 
         jt_compra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Marca", "Modelo", "Color", "Año", "Tipo"
+                "Marca", "Modelo", "Año", "Precio"
             }
         ));
         jScrollPane5.setViewportView(jt_compra);
@@ -816,6 +823,41 @@ public class Main extends javax.swing.JFrame {
         CrudJugadorLayout.setVerticalGroup(
             CrudJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jLabel29.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel29.setText("Buscando usuario");
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pb_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(150, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(pb_cargar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel29)
+                .addContainerGap(283, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout CargarLayout = new javax.swing.GroupLayout(Cargar.getContentPane());
+        Cargar.getContentPane().setLayout(CargarLayout);
+        CargarLayout.setHorizontalGroup(
+            CargarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        CargarLayout.setVerticalGroup(
+            CargarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -955,8 +997,8 @@ public class Main extends javax.swing.JFrame {
             cb_moduser.addItem(tf_user.getText());
             cb_garage.addItem(tf_user.getText());
             CreateUser.setVisible(false);
-            CrudJugador.pack();
-            CrudJugador.setVisible(true);
+            LoginU.pack();
+            LoginU.setVisible(true);
         }
     }//GEN-LAST:event_jb_crearMouseClicked
 
@@ -1096,10 +1138,10 @@ public class Main extends javax.swing.JFrame {
     private void jb_addcarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addcarMouseClicked
 
         if (cb_tipo.getSelectedItem().toString().equals("Reconstruido")) {
-            carros.add(new Carro("Reconstruido", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()),Integer.parseInt(tf_vp.getText()),Integer.parseInt(tf_tiempo.getText())));
+            carros.add(new Carro("Reconstruido", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText())));
             JOptionPane.showMessageDialog(Admin, "Carro añadido");
         } else {
-            carros.add(new Carro("Agencia", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()),Integer.parseInt(tf_vp.getText()),Integer.parseInt(tf_tiempo.getText())));
+            carros.add(new Carro("Agencia", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText())));
             DefaultTableModel model = (DefaultTableModel) jt_compra.getModel();
             Object[] data = new Object[5];
             data[0] = cb_marca.getSelectedItem();
@@ -1121,8 +1163,15 @@ public class Main extends javax.swing.JFrame {
 
     private void jb_confirmuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_confirmuMouseClicked
         LoginU.setVisible(false);
-        CrudJugador.pack();
-        CrudJugador.setVisible(true);
+        Cargar.pack();
+        Cargar.setVisible(true);
+        pb_cargar.setMaximum(jugadores.size());
+        carg.setLista(jugadores);
+        carg.setProg(pb_cargar);
+        carg.setCargar(Cargar);
+        carg.setCrud(CrudJugador);
+        carg.start();
+
     }//GEN-LAST:event_jb_confirmuMouseClicked
 
     private void jb_regresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_regresarMouseClicked
@@ -1217,6 +1266,7 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Carro> carros = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Admin;
+    private javax.swing.JDialog Cargar;
     private javax.swing.JTable Carrosporjugador;
     private javax.swing.JDialog CreateUser;
     private javax.swing.JDialog CrudJugador;
@@ -1255,6 +1305,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1265,6 +1316,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1293,6 +1345,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jb_userlogin;
     private javax.swing.JList<String> jl_carrosdejugador;
     private javax.swing.JTable jt_compra;
+    private javax.swing.JProgressBar pb_cargar;
     private javax.swing.JPasswordField pf_cpass;
     private javax.swing.JPasswordField pf_modpass;
     private javax.swing.JPasswordField pf_pass;
