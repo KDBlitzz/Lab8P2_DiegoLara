@@ -4,17 +4,19 @@
  */
 package lab8p2_diegolara;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author diego
  */
-public class concecionarias {
+public class concecionarias implements Serializable {
 
     private String nombre;
     private String loc;
     private ArrayList<Carro> carro = new ArrayList();
+    public static final long serialUID = 777l;
 
     public concecionarias(String nombre, String locación) {
         this.nombre = nombre;
@@ -47,7 +49,7 @@ public class concecionarias {
 
     @Override
     public String toString() {
-        return  "\nNombre: " + nombre;
+        return "\nNombre: " + nombre;
     }
-    
+
 }

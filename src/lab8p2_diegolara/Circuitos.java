@@ -4,15 +4,19 @@
  */
 package lab8p2_diegolara;
 
+import java.io.Serializable;
+
 /**
  *
  * @author diego
  */
-public class Circuitos {
+public class Circuitos implements Serializable {
+
     private int logitud;
     private int cant;
     private String tipo;
     private String loc;
+    public static final long serialUID = 777l;
 
     public Circuitos() {
     }
@@ -60,6 +64,5 @@ public class Circuitos {
     public String toString() {
         return "Tipo: " + tipo;
     }
-    
-    
+
 }

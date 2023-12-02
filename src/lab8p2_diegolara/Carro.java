@@ -5,6 +5,7 @@
 package lab8p2_diegolara;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author diego
  */
-public class Carro {
+public class Carro implements Serializable {
 
     private String tipo;
     private String marca;
@@ -26,6 +27,7 @@ public class Carro {
     private int velodidadp;
     private int tiempo;
     private ArrayList<Parte> partes = new ArrayList();
+    public static final long serialUID = 777l;
 
     public Carro() {
     }
@@ -74,8 +76,6 @@ public class Carro {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    
 
     public String getMarca() {
         return marca;

@@ -23,6 +23,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
 
     Color carro;
     Thread t;
+    Login carg;
+    Garagepg gar;
+    Comprapg com;
     /**
      * Creates new form Main
      */
@@ -30,7 +33,10 @@ public class Main extends javax.swing.JFrame implements Runnable {
         initComponents();
         tf_admin.setText("admin");
         pf_pass.setText("admin");
-        
+        AdminJugador aj = new AdminJugador("./Usuarios.usr");
+        aj.cargarArchivo();
+        jugadores = aj.getList();
+
     }
 
     /**
@@ -93,6 +99,15 @@ public class Main extends javax.swing.JFrame implements Runnable {
         jb_conce = new javax.swing.JButton();
         cb_loc = new javax.swing.JComboBox<>();
         jPanel13 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        tf_longitud = new javax.swing.JTextField();
+        tf_cant = new javax.swing.JTextField();
+        jb_addcir = new javax.swing.JButton();
+        cb_tipocir = new javax.swing.JComboBox<>();
+        cb_cirloc = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jb_salirA = new javax.swing.JButton();
         LoginU = new javax.swing.JDialog();
@@ -126,9 +141,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Carrosporjugador = new javax.swing.JTable();
-        cb_garage = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        pg_garage = new javax.swing.JProgressBar();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jl_carrosdejugador = new javax.swing.JList<>();
@@ -138,6 +153,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
         money = new javax.swing.JLabel();
         jb_comprarc = new javax.swing.JButton();
         cb_conce = new javax.swing.JComboBox<>();
+        pg_compra = new javax.swing.JProgressBar();
+        jPanel14 = new javax.swing.JPanel();
+        cb_sim = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         jb_salirmod = new javax.swing.JButton();
         Cargar = new javax.swing.JDialog();
@@ -526,15 +544,74 @@ public class Main extends javax.swing.JFrame implements Runnable {
 
         jTabbedPane1.addTab("Agregar Concesionaria", jPanel12);
 
+        jLabel34.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel34.setText("Longitud: ");
+
+        jLabel35.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel35.setText("Cantidad:");
+
+        jLabel36.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel36.setText("Tipo:");
+
+        jLabel37.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel37.setText("Locacion:");
+
+        jb_addcir.setText("Agregar Circuito");
+        jb_addcir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_addcirMouseClicked(evt);
+            }
+        });
+
+        cb_tipocir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Drag", "Off-road", "Circuito" }));
+
+        cb_cirloc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Japon", "USA", "Italia", "Francia", "Alemania", "UK" }));
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 955, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tf_longitud)
+                    .addComponent(tf_cant)
+                    .addComponent(cb_tipocir, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cb_cirloc, 0, 202, Short.MAX_VALUE))
+                .addContainerGap(494, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jb_addcir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 583, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tf_longitud)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(99, 99, 99)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel35)
+                    .addComponent(tf_cant, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel36)
+                    .addComponent(cb_tipocir, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addComponent(jb_addcir, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cb_cirloc)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(86, 86, 86))
         );
 
         jTabbedPane1.addTab("Agregar Circuitos", jPanel13);
@@ -561,7 +638,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jb_salirA, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Salir", jPanel2);
@@ -671,6 +748,12 @@ public class Main extends javax.swing.JFrame implements Runnable {
             LoginULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
 
         jLabel21.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel21.setText("Nuevo Nombre:");
@@ -805,19 +888,21 @@ public class Main extends javax.swing.JFrame implements Runnable {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cb_garage, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(pg_garage, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(cb_garage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(pg_garage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane1))
@@ -847,12 +932,6 @@ public class Main extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        cb_conce.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_conceItemStateChanged(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -873,24 +952,26 @@ public class Main extends javax.swing.JFrame implements Runnable {
                         .addGap(90, 90, 90)
                         .addComponent(cb_conce, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(pg_compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cb_conce)
+                    .addComponent(pg_compra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(cb_conce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jb_comprarc)
-                        .addGap(29, 29, 29)))
+                        .addComponent(jb_comprarc))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(money, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -898,6 +979,25 @@ public class Main extends javax.swing.JFrame implements Runnable {
         );
 
         jTabbedPane2.addTab("Compra y Venta", jPanel10);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(cb_sim, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(285, Short.MAX_VALUE))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(cb_sim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(532, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Simulacion", jPanel14);
 
         jb_salirmod.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jb_salirmod.setText("Salir");
@@ -1122,7 +1222,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
             cb_user.addItem(tf_user.getText());
             cb_modjugador.addItem(tf_name.getText());
             cb_moduser.addItem(tf_user.getText());
-            cb_garage.addItem(tf_user.getText());
+
             CreateUser.setVisible(false);
             LoginU.pack();
             LoginU.setVisible(true);
@@ -1300,7 +1400,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jb_colorMouseClicked
 
     private void jb_addcarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addcarMouseClicked
-
+        AdminCarro ac = new AdminCarro("./Carros.car");
         if (cb_tipo.getSelectedItem().toString().equals("Reconstruido")) {
             Carro c = new Carro("Reconstruido", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText()));
             carros.add(c);
@@ -1317,6 +1417,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
 
             jt_compra.setModel(model);
             JOptionPane.showMessageDialog(Admin, "Agregado Exitosamente");
+            ac.cargarArchivo();
+            ac.setCarro(c);
+            ac.escribirArchivo();
         } else {
             Carro c = new Carro("Agencia", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText()));
             carros.add(c);
@@ -1332,6 +1435,9 @@ public class Main extends javax.swing.JFrame implements Runnable {
             model.addRow(data);
             jt_compra.setModel(model);
             JOptionPane.showMessageDialog(Admin, "Agregado Exitosamente");
+            ac.cargarArchivo();
+            ac.setCarro(c);
+            ac.escribirArchivo();
         }
     }//GEN-LAST:event_jb_addcarMouseClicked
 
@@ -1347,7 +1453,10 @@ public class Main extends javax.swing.JFrame implements Runnable {
         String mon = Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash());
         money.setText(mon);
         pb_cargar.setMaximum(jugadores.size());
-        Login carg = new Login();
+        AdminJugador aj = new AdminJugador("./Usuarios.usr");
+        aj.cargarArchivo();
+        carg = new Login();
+        carg.setLista(aj.getList());
         carg.setLista(jugadores);
         carg.setProg(pb_cargar);
         carg.setCargar(Cargar);
@@ -1417,7 +1526,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
             jugadores.get(cb_user.getSelectedIndex()).setCash(jugadores.get(cb_user.getSelectedIndex()).getCash() - carros.get(jt_compra.getSelectedRow()).getPrecio());
             money.setText(Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash()));
             DefaultTableModel model = (DefaultTableModel) Carrosporjugador.getModel();
-
+            jugadores.get(cb_user.getSelectedIndex()).getPlayercars().add(carros.get(jt_compra.getSelectedRow()));
             Object[] data = new Object[5];
             data[0] = carros.get(jt_compra.getSelectedRow()).getMarca();
             data[1] = carros.get(jt_compra.getSelectedRow()).getModelo();
@@ -1438,11 +1547,36 @@ public class Main extends javax.swing.JFrame implements Runnable {
         cb_conce.addItem(c.getNombre());
 
         JOptionPane.showMessageDialog(Admin, "Agregado exitosamente");
+        AdminCons acs = new AdminCons("./Consesionaria.cns");
+        acs.cargarArchivo();
+        acs.setCons(c);
+        acs.escribirArchivo();
     }//GEN-LAST:event_jb_conceMouseClicked
 
-    private void cb_conceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_conceItemStateChanged
+    private void jb_addcirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addcirMouseClicked
+        Circuitos c = new Circuitos(Integer.parseInt(tf_longitud.getText()), Integer.parseInt(tf_cant.getText()), cb_tipocir.getSelectedItem().toString(), cb_cirloc.getSelectedItem().toString());
+        circ.add(c);
+        cb_sim.addItem(c.getTipo());
+        JOptionPane.showMessageDialog(Admin, "Agregado Exitosamente");
+        AdminCircuitos acir = new AdminCircuitos("./Circuitos.cct");
+        acir.cargarArchivo();
+        acir.setCirc(c);
+        acir.escribirArchivo();
+    }//GEN-LAST:event_jb_addcirMouseClicked
 
-    }//GEN-LAST:event_cb_conceItemStateChanged
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+        if (jTabbedPane2.getSelectedIndex() == 2) {
+            gar = new Garagepg();
+            pg_garage.setMaximum(10);
+            gar.setProg(pg_garage);
+            gar.start();
+        } else if (jTabbedPane2.getSelectedIndex() == 3) {
+            com = new Comprapg();
+            pg_compra.setMaximum(10);
+            com.setProg(pg_compra);
+            com.start();
+        }
+    }//GEN-LAST:event_jTabbedPane2StateChanged
 
     /**
      * @param args the command line arguments
@@ -1491,16 +1625,18 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel LoginA;
     private javax.swing.JDialog LoginU;
     private javax.swing.JPanel bg;
+    private javax.swing.JComboBox<String> cb_cirloc;
     private javax.swing.JComboBox<String> cb_conce;
     private javax.swing.JComboBox<String> cb_conce2;
-    private javax.swing.JComboBox<String> cb_garage;
     private javax.swing.JComboBox<String> cb_loc;
     private javax.swing.JComboBox<String> cb_marca;
     private javax.swing.JComboBox<String> cb_modelo;
     private javax.swing.JComboBox<String> cb_modjugador;
     private javax.swing.JComboBox<String> cb_moduser;
     private javax.swing.JComboBox<String> cb_pais;
+    private javax.swing.JComboBox<String> cb_sim;
     private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JComboBox<String> cb_tipocir;
     private javax.swing.JComboBox<String> cb_user;
     private com.toedter.calendar.JDateChooser dc_fecha;
     private com.toedter.calendar.JDateChooser dc_fechacarro;
@@ -1532,6 +1668,10 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1544,6 +1684,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1559,6 +1700,7 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JButton jb_addcar;
+    private javax.swing.JButton jb_addcir;
     private javax.swing.JButton jb_color;
     private javax.swing.JButton jb_comprarc;
     private javax.swing.JButton jb_conce;
@@ -1580,9 +1722,13 @@ public class Main extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPasswordField pf_modpass;
     private javax.swing.JPasswordField pf_pass;
     private javax.swing.JPasswordField pf_userpass;
+    private javax.swing.JProgressBar pg_compra;
+    private javax.swing.JProgressBar pg_garage;
     private javax.swing.JTextField tf_admin;
+    private javax.swing.JTextField tf_cant;
     private javax.swing.JTextField tf_correo;
     private javax.swing.JTextField tf_horsep;
+    private javax.swing.JTextField tf_longitud;
     private javax.swing.JTextField tf_modcorreo;
     private javax.swing.JTextField tf_modname;
     private javax.swing.JTextField tf_modpais;
@@ -1601,14 +1747,55 @@ public class Main extends javax.swing.JFrame implements Runnable {
         int cont = 0;
         while (true) {
             cont++;
+            AdminJugador aj = new AdminJugador("./Usuarios.usr");
+            AdminCarro ac = new AdminCarro("./Carros.car");
+            AdminCons acs = new AdminCons("./Consesionaria.cns");
+            AdminCircuitos circ = new AdminCircuitos("./Circuitos.cct");
             if (cont == 100) {
-                AdminJugador aj = new AdminJugador("./Usuarios.usr");
+
                 aj.cargarArchivo();
                 DefaultComboBoxModel model = new DefaultComboBoxModel(aj.getList().toArray());
                 cb_user.setModel(model);
                 cb_modjugador.setModel(model);
                 cb_moduser.setModel(model);
-                
+            }
+            if (cont == 200) {
+
+                ac.cargarArchivo();
+                DefaultTableModel modelC = (DefaultTableModel) jt_compra.getModel();
+                DefaultTableModel modelU = (DefaultTableModel) Carrosporjugador.getModel();
+                for (Carro c : ac.getList()) {
+                    Object[] dato = new Object[4];
+                    dato[0] = c.getMarca();
+                    dato[1] = c.getModelo();
+                    dato[2] = c.getFecha();
+                    dato[3] = c.getPrecio();
+                    modelC.addRow(dato);
+                    jt_compra.setModel(modelC);
+                }
+                for (jugador c : aj.getList()) {
+                    for (Carro i : c.getPlayercars()) {
+                        Object[] dato = new Object[5];
+                        dato[0] = i.getMarca();
+                        dato[1] = i.getModelo();
+                        dato[2] = i.getColor();
+                        dato[3] = i.getFecha();
+                        dato[4] = i.getTipo();
+                        modelU.addRow(dato);
+                        Carrosporjugador.setModel(modelU);
+                    }
+                }
+            }
+            if (cont == 300) {
+                acs.cargarArchivo();
+                DefaultComboBoxModel model = new DefaultComboBoxModel(acs.getList().toArray());
+                cb_conce2.setModel(model);
+                cb_conce.setModel(model);
+            }
+            if (cont == 400) {
+                circ.cargarArchivo();
+                DefaultComboBoxModel model = new DefaultComboBoxModel(circ.getList().toArray());
+                cb_sim.setModel(model);
             }
             try {
                 Thread.sleep(10);
