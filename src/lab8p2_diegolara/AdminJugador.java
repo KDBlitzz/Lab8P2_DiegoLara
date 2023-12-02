@@ -19,4 +19,24 @@ public class AdminJugador {
     public AdminJugador(String path) {
         archivo = new File(path);
     }
+
+    public ArrayList<jugador> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<jugador> list) {
+        this.list = list;
+    }
+
+    public File getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
+    
+    public void setJugador(jugador j) {
+        this.list.add(j);
+    }
 }

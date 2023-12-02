@@ -20,7 +20,6 @@ public class Main extends javax.swing.JFrame {
 // drag puede ser 800 o 400 metros
 
     Color carro;
-    private Login carg = new Login();
 
     /**
      * Creates new form Main
@@ -845,6 +844,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        cb_conce.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_conceItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -1126,11 +1131,14 @@ public class Main extends javax.swing.JFrame {
     private void cb_paisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_paisActionPerformed
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         DefaultComboBoxModel model2 = new DefaultComboBoxModel();
+
         if (cb_pais.getSelectedItem().toString().equals("USA")) {
 
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
-            
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("Ford");
             cb_marca.addItem("Chevrolet");
             cb_marca.addItem("ACORH");
@@ -1138,7 +1146,9 @@ public class Main extends javax.swing.JFrame {
         } else if (cb_pais.getSelectedItem().toString().equals("Japon")) {
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
-            
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("Suboru");
             cb_marca.addItem("Toyota");
             cb_marca.addItem("Honda");
@@ -1147,11 +1157,17 @@ public class Main extends javax.swing.JFrame {
         } else if (cb_pais.getSelectedItem().toString().equals("Italia")) {
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("Ferrari");
             cb_marca.addItem("Lamborghini");
         } else if (cb_pais.getSelectedItem().toString().equals("Alemania")) {
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("BMW");
             cb_marca.addItem("Mercedes-Benz");
             cb_marca.addItem("VW");
@@ -1160,20 +1176,27 @@ public class Main extends javax.swing.JFrame {
         } else if (cb_pais.getSelectedItem().toString().equals("Francia")) {
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("Peugeot");
             cb_modelo.addItem("206");
         } else if (cb_pais.getSelectedItem().toString().equals("UK")) {
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("Mini");
         } else if (cb_pais.getSelectedItem().toString().equals("Sweeden")) {
             cb_marca.setModel(model);
             cb_conce2.setModel(model2);
+            if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
+                cb_conce2.addItem(tf_nombrecon.getText());
+            }
             cb_marca.addItem("Volvo");
         }
-        if (cb_pais.getSelectedItem().toString().equals(cb_loc.getSelectedItem().toString())) {
-            cb_conce2.addItem(tf_nombrecon.getText());
-        }
+
     }//GEN-LAST:event_cb_paisActionPerformed
 
     private void cb_marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_marcaActionPerformed
@@ -1268,7 +1291,10 @@ public class Main extends javax.swing.JFrame {
     private void jb_addcarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_addcarMouseClicked
 
         if (cb_tipo.getSelectedItem().toString().equals("Reconstruido")) {
-            carros.add(new Carro("Reconstruido", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText())));
+            Carro c = new Carro("Reconstruido", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText()));
+            carros.add(c);
+            conc.get(cb_conce2.getSelectedIndex()).getCarro().add(c);
+
             DefaultTableModel model = (DefaultTableModel) jt_compra.getModel();
             Object[] data = new Object[4];
             data[0] = cb_marca.getSelectedItem();
@@ -1279,10 +1305,12 @@ public class Main extends javax.swing.JFrame {
             model.addRow(data);
 
             jt_compra.setModel(model);
-            JOptionPane.showMessageDialog(Admin, "Carro añadido");
-
+            JOptionPane.showMessageDialog(Admin, "Agregado Exitosamente");
         } else {
-            carros.add(new Carro("Agencia", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText())));
+            Carro c = new Carro("Agencia", cb_marca.getSelectedItem().toString(), cb_modelo.getSelectedItem().toString(), carro, Double.parseDouble(tf_precio.getText()), cb_pais.getSelectedItem().toString(), dc_fechacarro.getDate(), Integer.parseInt(tf_horsep.getText()), Integer.parseInt(tf_vp.getText()), Integer.parseInt(tf_tiempo.getText()));
+            carros.add(c);
+            conc.get(cb_conce2.getSelectedIndex()).getCarro().add(c);
+
             DefaultTableModel model = (DefaultTableModel) jt_compra.getModel();
             Object[] data = new Object[4];
             data[0] = cb_marca.getSelectedItem();
@@ -1291,9 +1319,8 @@ public class Main extends javax.swing.JFrame {
             data[3] = tf_precio.getText();
 
             model.addRow(data);
-
             jt_compra.setModel(model);
-            JOptionPane.showMessageDialog(Admin, "Carro añadido");
+            JOptionPane.showMessageDialog(Admin, "Agregado Exitosamente");
         }
     }//GEN-LAST:event_jb_addcarMouseClicked
 
@@ -1309,6 +1336,7 @@ public class Main extends javax.swing.JFrame {
         String mon = Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash());
         money.setText(mon);
         pb_cargar.setMaximum(jugadores.size());
+        Login carg = new Login();
         carg.setLista(jugadores);
         carg.setProg(pb_cargar);
         carg.setCargar(Cargar);
@@ -1378,6 +1406,7 @@ public class Main extends javax.swing.JFrame {
             jugadores.get(cb_user.getSelectedIndex()).setCash(jugadores.get(cb_user.getSelectedIndex()).getCash() - carros.get(jt_compra.getSelectedRow()).getPrecio());
             money.setText(Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash()));
             DefaultTableModel model = (DefaultTableModel) Carrosporjugador.getModel();
+            
             Object[] data = new Object[5];
             data[0] = carros.get(jt_compra.getSelectedRow()).getMarca();
             data[1] = carros.get(jt_compra.getSelectedRow()).getModelo();
@@ -1386,6 +1415,7 @@ public class Main extends javax.swing.JFrame {
             data[4] = carros.get(jt_compra.getSelectedRow()).getTipo();
             model.addRow(data);
             Carrosporjugador.setModel(model);
+            
             JOptionPane.showMessageDialog(CrudJugador, "Carro Compardo exitosamente");
         }
     }//GEN-LAST:event_jb_comprarcMouseClicked
@@ -1393,10 +1423,15 @@ public class Main extends javax.swing.JFrame {
     private void jb_conceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_conceMouseClicked
         concecionarias c = new concecionarias(tf_nombrecon.getText(), cb_loc.getSelectedItem().toString());
         conc.add(c);
+
         cb_conce.addItem(c.getNombre());
-        tf_nombrecon.setText("");
+
         JOptionPane.showMessageDialog(Admin, "Agregado exitosamente");
     }//GEN-LAST:event_jb_conceMouseClicked
+
+    private void cb_conceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_conceItemStateChanged
+
+    }//GEN-LAST:event_cb_conceItemStateChanged
 
     /**
      * @param args the command line arguments

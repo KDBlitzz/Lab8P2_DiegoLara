@@ -62,6 +62,7 @@ public class Login extends Thread {
     @Override
     public void run() {
         prog.setValue(0);
+        cont = 0;
         while (flag) {
             try {
                 Thread.sleep(1000);
@@ -74,6 +75,7 @@ public class Login extends Thread {
                 cargar.setVisible(false);
                 crud.pack();
                 crud.setVisible(true);
+                prog.setValue(0);
                 return;
             }
 
