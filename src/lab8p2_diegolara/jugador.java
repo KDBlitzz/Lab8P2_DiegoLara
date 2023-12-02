@@ -4,6 +4,7 @@
  */
 package lab8p2_diegolara;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
  *
  * @author diego
  */
-public class jugador {
+public class jugador implements Serializable{
 
     private String nombre;
     private String correo;
@@ -21,7 +22,7 @@ public class jugador {
     Date fecha = new Date();
     private String pass;
     private String user;
-
+    public static final long serialUID = 777l;
     public jugador() {
     }
 
@@ -97,4 +98,10 @@ public class jugador {
     public void setUser(String user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre;
+    }
+    
 }

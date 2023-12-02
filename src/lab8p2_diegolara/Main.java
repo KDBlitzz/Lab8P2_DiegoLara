@@ -7,6 +7,8 @@ package lab8p2_diegolara;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
@@ -16,11 +18,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author diego
  */
-public class Main extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame implements Runnable {
 // drag puede ser 800 o 400 metros
 
     Color carro;
-
+    Thread t;
     /**
      * Creates new form Main
      */
@@ -28,6 +30,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         tf_admin.setText("admin");
         pf_pass.setText("admin");
+        
     }
 
     /**
@@ -1097,6 +1100,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jb_createuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_createuserMouseClicked
         this.setVisible(false);
+        t = new Thread(this);
+        t.start();
         CreateUser.pack();
         CreateUser.setVisible(true);
     }//GEN-LAST:event_jb_createuserMouseClicked
@@ -1106,12 +1111,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jb_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearMouseClicked
+        AdminJugador aj = new AdminJugador("./Usuarios.usr");
         Date temp = dc_fecha.getDate();
         int year = temp.getYear() + 1900;
         if (2023 - year <= 12) {
             JOptionPane.showMessageDialog(CreateUser, "No se aceptan niños de 12");
         } else {
-            jugadores.add(new jugador(tf_name.getText(), tf_correo.getText(), tf_pais.getText(), dc_fecha.getDate(), tf_user.getText(), pf_cpass.getText()));
+            jugador j = new jugador(tf_name.getText(), tf_correo.getText(), tf_pais.getText(), dc_fecha.getDate(), tf_user.getText(), pf_cpass.getText());
+            jugadores.add(j);
             cb_user.addItem(tf_user.getText());
             cb_modjugador.addItem(tf_name.getText());
             cb_moduser.addItem(tf_user.getText());
@@ -1119,6 +1126,10 @@ public class Main extends javax.swing.JFrame {
             CreateUser.setVisible(false);
             LoginU.pack();
             LoginU.setVisible(true);
+            aj.cargarArchivo();
+            aj.setJugador(j);
+            aj.escribirArchivo();
+
         }
     }//GEN-LAST:event_jb_crearMouseClicked
 
@@ -1406,7 +1417,7 @@ public class Main extends javax.swing.JFrame {
             jugadores.get(cb_user.getSelectedIndex()).setCash(jugadores.get(cb_user.getSelectedIndex()).getCash() - carros.get(jt_compra.getSelectedRow()).getPrecio());
             money.setText(Double.toString(jugadores.get(cb_user.getSelectedIndex()).getCash()));
             DefaultTableModel model = (DefaultTableModel) Carrosporjugador.getModel();
-            
+
             Object[] data = new Object[5];
             data[0] = carros.get(jt_compra.getSelectedRow()).getMarca();
             data[1] = carros.get(jt_compra.getSelectedRow()).getModelo();
@@ -1415,7 +1426,7 @@ public class Main extends javax.swing.JFrame {
             data[4] = carros.get(jt_compra.getSelectedRow()).getTipo();
             model.addRow(data);
             Carrosporjugador.setModel(model);
-            
+
             JOptionPane.showMessageDialog(CrudJugador, "Carro Compardo exitosamente");
         }
     }//GEN-LAST:event_jb_comprarcMouseClicked
@@ -1584,4 +1595,27 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_user;
     private javax.swing.JTextField tf_vp;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        int cont = 0;
+        while (true) {
+            cont++;
+            if (cont == 100) {
+                AdminJugador aj = new AdminJugador("./Usuarios.usr");
+                aj.cargarArchivo();
+                DefaultComboBoxModel model = new DefaultComboBoxModel(aj.getList().toArray());
+                cb_user.setModel(model);
+                cb_modjugador.setModel(model);
+                cb_moduser.setModel(model);
+                
+            }
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
 }
